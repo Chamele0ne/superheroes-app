@@ -13,7 +13,8 @@ import {sagaWatcher} from './redux/sagas'
 
 const saga=createSagaMiddleware()
 
-const store = createStore(rootReducer , compose(applyMiddleware(thunk , deleteMiddleWare , saga)))
+const store = createStore(rootReducer , compose(applyMiddleware(thunk , deleteMiddleWare , saga),
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 saga.run(sagaWatcher)
 
 const app = <Provider store = {store}>
