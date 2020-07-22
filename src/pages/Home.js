@@ -35,23 +35,24 @@ event.preventDefault()
 	setCurrentPage(paginateNumber)
 }
 
-	return (
-		<Fragment>
-		
-		<TransitionGroup>
-		{textAlert && <CSSTransition timeout={750} classNames='alert'><Alert text = {textAlert} /></CSSTransition>}
-		</TransitionGroup>
-		
-		{selector.loaderReducer.loading && <Loader />}
-		
-		<Cards heroes = {currentCards} />
-		
-		<Pagination className = 'm-2'
-		cardsPerPage = {cardsPerPage} 
-		totalCards = {selector.firebaseReducer.heroes.length} 
-		paginate = {paginate}/>
-		</Fragment>
-		)
+return (
+	<Fragment>
+
+	<TransitionGroup>
+	{textAlert && <CSSTransition timeout={750} classNames='alert'><Alert text = {textAlert} /></CSSTransition>}
+	</TransitionGroup>
+
+
+	{selector.loaderReducer.loading ? 	<div className='text-center' style = {{paddingTop : '300px'}}><Loader /></div> : 
+	<div><Cards heroes = {currentCards} /> 
+	<Pagination className = 'm-2'
+	cardsPerPage = {cardsPerPage} 
+	totalCards = {selector.firebaseReducer.heroes.length} 
+	paginate = {paginate}/> </div> }
+
+
+	</Fragment>
+	)
 
 }
 
